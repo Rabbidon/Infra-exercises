@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newcommand{\chapternumber}{1}
+\title{Set \chapternumber\ - Questions and Solutions}
+\author{Edwin Fennell}
+\date{}
+\newenvironment{QandA}{\begin{enumerate}[label=\chapternumber.\arabic*]\bfseries\boldmath}
+	{\end{enumerate}}
+\newenvironment{answered}{\par\bigskip\normalfont\unboldmath}{}
+\usepackage{lipsum}
+\pagestyle{empty}
+\begin{document}
+	\maketitle
+	
+	\noindent%
+	\begin{QandA}
+		\item Let $V$ be a vector space, and let $f : V \rightarrow R$. Prove that f is affine if and
+		only if $f(x) = g(x) +c$, where $g$ is linear and $c \in R$.
+		In the case where $f : R \rightarrow R$, the claim is that an affine function is a line
+		that may or may not go through the origin.
+		\begin{answered}
+			If $g$ is linear then
+			\[f(px+(1-p)x')=g(px+(1-p)x)'+c = p(g(x)+c)+(1-p)(g(x')+c)\]
+		which is just $pf(x)+(1-p)f(x')$, and so $f$ is affine for any constant $c$.
+		\\\\
+		For the other direction, we set $g(x) = f(x)-f(\textbf{0})$ for our affine function $f$.
+		We note that for any x
+		\[f(\textbf{0})=f\left(\frac{x}{2}+\frac{-x}{2}\right)=\frac{1}{2}(f(x)+f(-x))\]
+		from which we directly get
+		\[g(x)=-g(-x)\]
+		For any $\lambda\in(0,1)$ we have 
+		\[g(\lambda x) = f(\lambda x)-f(\textbf{0}) = f(\lambda x + (1-\lambda)\textbf{0}))-f(\textbf{0}) = \lambda f(x) - \lambda(f(\textbf{0}))=\lambda g(x)\]
+		For $\lambda>1$, we set $\theta=\lambda^{-1}$ and note that our previous result gives
+		\[\theta g((\lambda x))=g(\theta(\lambda x))\]
+		for any x. Multiplying through by $\lambda$ and simplifying $\theta\lambda=1$ gives
+		\[g(\lambda x)=\lambda g(x)\]
+		Combined, these results tell us that g is homogeneous.
+		Now, we note that \[g(a+b)= 2g\left(\frac{a}{2}+\frac{b}{2}\right)=2f\left(\frac{a}{2}+\frac{b}{2}\right)-2f(\textbf{0})=f(a)+f(b)-2f(\textbf{0})=g(a)+g(b)\]
+		and so $g$ is additive as well as homogeneous. Therefore $g$ is linear.
+		\end{answered}
+	
+		\item Let $f : \mathbb{R} \rightarrow \mathbb{R}$ be continuous and concave, and define $T$ to be the set of
+		all affine functions above $f$:
+		
+		\[T = \{\phi : \phi \geq f,\phi \text{ is affine}\}\]
+		Let $g(x) = \text{inf}_{\phi\in T} \{\phi(x)\}$. Prove that $f = g$.
+		\begin{answered}
+			Intuitively, this is just the statement that a concave function lies below all its tangents. But $f$ need not actually be differentiable, so might not have a tangent at every given point. We resolve this with the following construction:
+			\\\\
+			Take an arbitrary real point $x$. Consider arbitrary reals $a$,$b$ s.t. $a<x<b$. Then $p=\frac{b-x}{b-a}$ is s.t. $x=pa+(1-p)b$. By concavity of $f$
+			\[f(x) \geq pf(a)+(1-p)f(b)=\frac{b-x}{b-a}f(a)+\frac{x-a}{b-a}f(b)\]
+			Rearranging gives
+			\[\frac{f(x)-f(a)}{x-a}\geq\frac{f(b)-f(x)}{b-x}\]
+		$a$,$b$ were arbitrary, with the only condition being $a<x<b$. Therefore the following expressions:
+		\[A=\inf_{a<x}\frac{f(x)-f(a)}{x-a}\]
+		\[B=\sup_{b>x}\frac{f(b)-f(a)}{b-x}\]
+		are both finite, with $B\leq A$. 
+		Now we note that the function $h(y) = A(y-x)+f(x)$ is affine via our result from question 1.1. We also note that $h(x)=f(x)$. $\forall a<x$ we have
+		\[h(a)=A(a-x)+f(x)\geq\frac{f(x)-f(a)}{x-a}(a-x)+f(x)=f(a)\]
+		(The inequality follows from the definition of $A$ and the sign of $a-x$). A similar logic using the definition of $B$ and the fact that $A\geq B$ shows us that $h\geq f$ everywhere. Therefore $h\in T$ and $g(x)<=h(x)=f(x)$. By definition of $T$, we must also have $g(x)\geq f(x)$, and so $g(x)=f(x)$. $x$ was arbitrary, so therefore $f=g$.
+		
+		
+		\end{answered}
+		\newpage
+	
+		\item Let $f : \mathbb{R} \rightarrow \mathbb{R}$ be concave that’s monotone, 1-Lipschitz, and
+		0-increasing. Let $T$ to be the set of
+		all affine functions above $f$ that are monotone, 1-Lipschitz, and
+		0-increasing:
+		
+		\[T = \{\phi : \phi \geq f,\phi \text{ is affine, monotone, 1-Lipschitz, 0-increasing}\}\]
+		Let $g(x) = \text{inf}_{\phi\in T} \{\phi(x)\}$. Prove that $f = g$.
+		
+		Show also the connverse: Let $\{\phi_i\}_{i\in I}$ be a collection of affine functions $\mathbb{R} → \mathbb{R}$ that are monotone,
+		1-Lipschitz, and 0-increasing. Let f(x) = infi∈Iφi(x). Prove also that f is
+		continuous, concave, monotone, 1-Lipschitz, and 0-increasing.
+		\begin{answered}
+			We note that the function h 
+			
+			
+		\end{answered}
+	
+		\end{QandA}
+
+\end{document}
